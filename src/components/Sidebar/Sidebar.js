@@ -25,9 +25,11 @@ import {
     AiOutlineLeft,
     AiOutlineSearch,
     AiOutlineSetting,
+    AiOutlineUsergroupAdd,
 } from "react-icons/ai";
 import { MdLogout, MdOutlineAnalytics } from "react-icons/md";
 import { BsPeople } from "react-icons/bs";
+import {MdOutlineProductionQuantityLimits } from 'react-icons/md'
 
 import { ThemeContext } from "./../../App";
 import { useLocation } from "react-router-dom";
@@ -55,9 +57,10 @@ const Sidebar = () => {
                 </SSidebarButton>
             </>
             <SLogo>
-                <img src={logoSVG} alt="logo" />
+                {/* <img src={logoSVG} alt="logo" /> */}
             </SLogo>
-            <SSearch
+
+            {/* <SSearch
                 onClick={searchClickHandler}
                 style={!sidebarOpen ? { width: `fit-content` } : {}}
             >
@@ -69,7 +72,8 @@ const Sidebar = () => {
                     placeholder="Search"
                     style={!sidebarOpen ? { width: 0, padding: 0 } : {}}
                 />
-            </SSearch>
+                </SSearch> */}
+
             <SDivider />
             {linksArray.map(({ icon, label, notification, to }) => (
                 <SLinkContainer key={label} isActive={pathname === to}>
@@ -88,9 +92,9 @@ const Sidebar = () => {
                 </SLinkContainer>
             ))}
             <SDivider />
-            {secondaryLinksArray.map(({ icon, label }) => (
+            {secondaryLinksArray.map(({ icon, label, to }) => (
                 <SLinkContainer key={label}>
-                    <SLink to="/" style={!sidebarOpen ? { width: `fit-content` } : {}}>
+                    <SLink to={to} style={!sidebarOpen ? { width: `fit-content` } : {}}>
                         <SLinkIcon>{icon}</SLinkIcon>
                         {sidebarOpen && <SLinkLabel>{label}</SLinkLabel>}
                     </SLink>
@@ -112,7 +116,7 @@ const Sidebar = () => {
 
 const linksArray = [
     {
-        label: "Home",
+        label: "Dashboard",
         icon: <AiOutlineHome />,
         to: "/",
         notification: 0,
@@ -130,10 +134,16 @@ const linksArray = [
         notification: 0,
     },
     {
-        label: "Diagrams",
-        icon: <AiOutlineApartment />,
-        to: "/diagrams",
-        notification: 1,
+        label: "Products ",
+        icon: <MdOutlineProductionQuantityLimits />,
+        to: "/products",
+        notification: 0,
+    },
+    {
+        label: "Employees",
+        icon: <AiOutlineUsergroupAdd />,
+        to: "/employees",
+        notification: 0,
     },
 ];
 
@@ -141,10 +151,12 @@ const secondaryLinksArray = [
     {
         label: "Settings",
         icon: <AiOutlineSetting />,
+        to: "/setting"
     },
     {
         label: "Logout",
         icon: <MdLogout />,
+        to:"/Logout"
     },
 ];
 

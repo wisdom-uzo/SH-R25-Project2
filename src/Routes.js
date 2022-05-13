@@ -1,21 +1,25 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { Customers, Dashboard, Employees, Products } from "./pages";
 import HomePage from "./pages/HomePage";
 
 const Routes = () => {
     return (
         <Switch>
             <Route exact path="/">
-                <HomePage />
+                <Dashboard />
             </Route>
             <Route exact path="/statistics">
-                <h1>Statistics Page</h1>
+                <h2>Statistics</h2>
             </Route>
             <Route exact path="/customers">
-                <h1>Customers Page</h1>
+                <Customers />
             </Route>
-            <Route exact path="/diagrams">
-                <h1>Diagrams Page</h1>
+            <Route exact path="/products">
+                <Products />
+            </Route>
+            <Route exact path="/employees">
+                <Employees/>
             </Route>
         </Switch>
     );
