@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import { Customers, Dashboard, Employees, Products } from "./pages";
+import { Customers, Dashboard, Employees, LoginPage, Products } from "./pages";
 import HomePage from "./pages/HomePage";
 
+
+
+
+
+
 const Routes = () => {
+    const [user, setUser] = useState(null)
+
+    const LoginUser = () => {
+    
+        if(!user){
+            return (< LoginPage />)
+        }
+
+
+    }
     return (
         <Switch>
             <Route exact path="/">
@@ -20,6 +35,10 @@ const Routes = () => {
             </Route>
             <Route exact path="/employees">
                 <Employees/>
+            </Route>
+
+            <Route exact path="/login">
+                <LoginPage/>
             </Route>
         </Switch>
     );
