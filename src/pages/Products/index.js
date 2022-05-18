@@ -6,13 +6,16 @@ import { ProductsContainer } from '../../components';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getAllProducts = async () => {
+    setLoading(true);
     await axios
-      .get('https://fakerapi.it/api/v1/products?_quantity=17')
+      .get('https://fakerapi.it/api/v1/products?_quantity=18')
       .then((response) => {
         setProducts(response.data.data);
       });
+    setLoading(false);
   };
   useEffect(() => {
     getAllProducts();
@@ -35,11 +38,13 @@ const Products = () => {
 
         <div>
           <hr />
-          <span>{products.length} products available</span>
+          <span className="loading">
+            {loading ? 'Loading...' : `${products.length} products available`}
+          </span>
         </div>
       </section>
 
-      <ProductsContainer products={products} />
+      <ProductsContainer products={products} loading={loading} />
     </Wrapper>
   );
 };
@@ -68,13 +73,19 @@ const Wrapper = styled.div`
   }
 
   .title span {
+    display: inline-block;
     background: #f6866a;
     border-radius: 4px;
-    content: '§';
+    content: '';
     padding: 0 4px;
     position: relative;
-    top: -13px;
-    right: -40%;
+    top: -22px;
+    right: -41%;
+    padding: 0.5rem;
+    width: 12rem;
+  }
+  .loading {
+    text-align: center;
   }
 `;
 

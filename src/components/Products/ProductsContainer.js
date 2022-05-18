@@ -5,7 +5,8 @@ const ProductsContainer = ({ products }) => {
   return (
     <Wrapper>
       {products.map((product) => {
-        const { id, image, description, price, tags, name } = product;
+        const { id, image, description, price, tags, name, net_price, taxes } =
+          product;
 
         return (
           <article key={id}>
@@ -14,10 +15,20 @@ const ProductsContainer = ({ products }) => {
             </div>
             <div className="details">
               <p className="name">{name}</p>
-              <p className="price">${(price / 1000).toFixed(2)}</p>
-              <p className="desc">{description}</p>
-              <button>DETAILS</button>
+              <p className="price">
+                <span> Price :</span> ${(price / 1000).toFixed(2)}
+              </p>
+              <p>
+                <span>Net Price :</span> ${(net_price / 1000).toFixed(2)}
+              </p>
+              <p>
+                <span>Taxes : </span> ${taxes.toFixed(2)}
+              </p>
+              <p className="desc">
+                <span>Description</span> {description}
+              </p>
             </div>
+            <button>DETAILS</button>
           </article>
         );
       })}
@@ -27,11 +38,22 @@ const ProductsContainer = ({ products }) => {
 
 const Wrapper = styled.div`
   padding: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
   article {
     display: flex;
-    margin-bottom: 1.5rem;
-    gap: 1rem;
-    align-items: center;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 20rem;
+    background-color: ${({ theme }) => theme.bg3};
+    justify-content: space-between;
+  }
+  article .details span {
+    font-weight: 700;
   }
   .image-container {
     height: 200px;
@@ -61,7 +83,8 @@ const Wrapper = styled.div`
     display: block;
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     z-index: 10;
   }
   .name {
@@ -71,13 +94,12 @@ const Wrapper = styled.div`
     margin-bottom: 1rem;
   }
   .price {
-    color: #f6866a;
     margin-bottom: 0.5rem;
     font-weight: 600;
   }
   .desc {
     font-size: 0.9rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
   }
   button {
     padding: 0.3em 0.5em;
@@ -86,11 +108,11 @@ const Wrapper = styled.div`
     border-radius: 4px;
     font-size: 0.7rem;
     color: inherit;
+    width: 100%;
   }
   button:hover {
     background-color: 1px solid ${({ theme }) => theme.bg};
-    transform: scale(1.1);
-    /* background-color: red; */
+    transform: scale(0.98);
   }
 `;
 
