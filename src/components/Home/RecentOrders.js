@@ -12,7 +12,7 @@ const RecentOrders = () => {
 
       {recentOrders.map(({ price, customer, date, id, status }) => {
         return (
-          <div className="orders-column">
+          <div key={id} className="orders-column">
             <p>{date}</p>
             <p>{customer}</p>
             <p>{status}</p>

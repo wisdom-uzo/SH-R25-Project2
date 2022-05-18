@@ -1,14 +1,20 @@
 import React from 'react';
 import './style.css';
 import styled from 'styled-components';
-import { TopProducts, SalesReport, TopInfo, OrderStatus, RecentOrders } from '../../components';
+import {
+  TopProducts,
+  SalesReport,
+  TopInfo,
+  OrderStatus,
+  RecentOrders,
+} from '../../components';
 
 const HomePage = () => {
   return (
     <Wrapper>
       <h2>Overview</h2>
       <main>
-        <setion className="top-grid">
+        <section className="top-grid">
           <section className="top-left-grid">
             <TopInfo />
             <SalesReport />
@@ -16,10 +22,10 @@ const HomePage = () => {
           <section className="top-right-grid">
             <TopProducts />
           </section>
-        </setion>
-        <section className='bottom-grid'>
+        </section>
+        <section className="bottom-grid">
           <RecentOrders />
-          <OrderStatus/>
+          <OrderStatus />
         </section>
       </main>
     </Wrapper>
@@ -42,7 +48,7 @@ const Wrapper = styled.div`
     flex-grow: 1;
     flex-basis: 30%;
   }
-  .bottom-grid{
+  .bottom-grid {
     margin-top: 1.5rem;
     display: flex;
     justify-content: space-between;
